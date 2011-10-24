@@ -36,7 +36,7 @@ gem 'factory_girl'
 
 # localhost
 
- gem 'contacts'
+# gem 'contacts'
  gem 'hpricot'
 
 # Bundle gems for the local environment. Make sure to
