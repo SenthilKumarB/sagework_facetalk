@@ -36,8 +36,8 @@ gem 'factory_girl'
 
 # localhost
 
-# gem 'contacts'
-# gem 'hpricot'
+ gem 'contacts'
+ gem 'hpricot'
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
