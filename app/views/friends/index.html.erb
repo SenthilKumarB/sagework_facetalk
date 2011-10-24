@@ -1,0 +1,112 @@
+<h1>Find Friends</h1>
+<span>Find Friends, family and people with common backgrounds</span> <br />
+<a href="#">Browse for new friends</a><br /><br />
+<div style="border:2px solid; padding:10px;">
+	<a href="#" id="facebook" onclick="sendRequestToManyRecipients(); return false;">Facebook</a> || <a href="#"  id="hotmail" class="invite_me">Hotmail</a> || <a href="#" id="yahoo" class="invite_me">Yahoo</a> || <a href="#" id="gmail" class="invite_me">Gmail</a>
+  <br/><br/>
+  <div class="form">
+    <div class="rows">
+      Search By : <span> <input type="radio" name="search" /> All </span>
+                  <span> <input type="radio" name="search" /> Name </span>
+                  <span> <input type="radio" name="search" /> Display Name </span>
+                  <span> <input type="radio" name="search" /> Email </span>
+    </div> 
+    <div class="rows">
+      <input type="text" /><button>Find</button>
+    </div>         
+  </div>
+</div>
+
+<div id="dialog-form" title="Invite Friends" style="display:none;">
+	<div class="form">
+		<p class="validateTips">All form fields are required.</p>
+		<%= form_tag({:action => "get_contacts"}, :id=>"inviteForm") do %>
+			<fieldset>
+				<div class="rows">
+					<label for="name">Name/Email</label>
+					<input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all" />
+				</div>
+				<div class="rows">
+					<label for="password">Password</label>
+					<input type="hidden" name="client" id="client"></input>
+					<input type="password" name="password" id="password" value="" class="text ui-widget-content ui-corner-all" />
+				</div>
+			</fieldset>
+		<% end %>
+	</div>
+</div>
+
+<div id="fb-root"></div>
+<div id="invite_friend_<%= @contact.blank? %>" title="Invite Friends">
+	<% unless @contact.blank? %>
+		<%= form_tag({:action => "email_invited_friends"}, :id=>"emailForm") do %>
+			<% @contact.each do |key, value| %>
+				<input type="checkbox" name="email[]" id="email_<%= value %>" value="<%= value %>" /><%= value.html_safe %><br>
+			<% end %>
+		<% end %>
+	<% end %>
+</div>
+
+<script>
+$( ".invite_me" ).click(function() {
+	$("#client").val(this.id);
+	$("#dialog-form").dialog({
+                resizable: false,
+                height: 300,
+                width: 400,
+                modal: true,
+                buttons: {
+                    Invite: function() {
+                        $("#inviteForm").submit();
+                    },
+                    Cancel: function(e) {
+                        e.preventDefault();
+                        $(this).dialog("close");
+                    }
+                }
+            });
+});
+
+$(document).ready(function(){
+	$("#invite_friend_false").dialog({
+		 resizable: false,
+                height: 300,
+                width: 400,
+                modal: true,
+                buttons: {
+                     Invite: function() {
+                         $("#emailForm").submit();
+                     },
+                    Cancel: function(e) {
+                        e.preventDefault();
+                        $(this).dialog("close");
+                    }
+                }	
+	})
+})
+
+FB.init({
+        appId  : '293877427293863',
+        status : true,
+        cookie : true,
+        oauth: true
+      });
+
+      function sendRequestToManyRecipients() {
+        // FB.ui({method: 'apprequests',
+        //   message: 'My Great Request',
+        // }, requestCallback);
+       FB.ui({
+	    	method: 'fbml.dialog',
+	    	fbml: (
+	         '<fb:request-form action="http://localhost:3000/friends" method="post" target="_top" invite="true" type="Puggli" content="Come and Join this Puggli!"> <fb:multi-friend-selector showborder="false" max="30" import_external_friends="false" email_invite="false" cols="5" actiontext="Invite your friends!" /></fb:request-form>'
+	       ),
+		});
+
+      }
+      
+      function requestCallback(response) {
+        // Handle callback here
+      }
+
+</script>

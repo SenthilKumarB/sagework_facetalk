@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   width="570" height="400" minWidth="570" minHeight="400" backgroundColor="#EEEEEE"
+			   applicationComplete="init();">
+	<fx:Declarations>
+		<s:HTTPService id="rootUrl" method="GET" url="../friends/show" />
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.core.FlexGlobals;
+			import mx.events.CloseEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			private const SERVER_ADDRESS:String = "rtmfp://p2p.rtmfp.net/";
+			private const DEVELOPER_KEY:String = "4a3bd17949ffff3f55309d92-5a45492d8cb9";
+			private var netConnection:NetConnection;
+			private var receiveStream:NetStream;
+			private var username:String;
+			private var currentUsername:String;
+			private var netGroup:NetGroup;
+			private var sequenceNumber:uint = 0;
+			private var joinedGroup:Boolean = false;
+			
+			public function init():void {
+				ExternalInterface.addCallback("postMessage", postMessage);
+				initCurrentUser();
+			}
+			
+			private function netStatus(event:NetStatusEvent):void {
+				switch(event.info.code) {
+					case "NetConnection.Connect.Success":
+						setupStream();
+						break;
+					
+					case "NetStream.Connect.Success":
+						var camera:Camera = Camera.getCamera();
+						receiveStream.play("multicast");
+						var video:Video = new Video(650, 380);
+						userVD.addChild(video);
+						video.attachNetStream(receiveStream);
+						break;
+					
+					case "NetGroup.Connect.Success":
+						joinedGroup = true;
+						break;
+					
+					case "NetGroup.Posting.Notify":
+						var message:Object = event.info.message;
+						ExternalInterface.call("postMessage", message.user + ": " + message.text);
+						break;
+				}
+			}
+			
+			private function initCurrentUser():void {
+				var params:Object = new Object();
+//				params.r = "user/show";
+				params.format = "xml";
+				rootUrl.addEventListener(ResultEvent.RESULT, currentUserListener);
+				rootUrl.send(params);
+			}			
+			
+			private function initUser():void {
+				var params:Object = new Object();
+//				params.r = "user/show";
+				params.id = FlexGlobals.topLevelApplication.parameters.id;
+				params.format = "xml";
+				rootUrl.removeEventListener(ResultEvent.RESULT, currentUserListener);
+				rootUrl.addEventListener(ResultEvent.RESULT, userListener);
+				rootUrl.send(params);
+			}
+			
+			private function userListener(event:ResultEvent):void {
+				username = event.result.user.username;
+				netConnection = new NetConnection();
+				netConnection.addEventListener(NetStatusEvent.NET_STATUS, netStatus);
+				netConnection.connect(SERVER_ADDRESS + DEVELOPER_KEY);
+			}
+			
+			private function currentUserListener(event:ResultEvent):void {
+				currentUsername = event.result.user.username;
+				initUser();
+			}
+
+			
+			private function setupStream():void {
+				var groupSpecifier:GroupSpecifier = new GroupSpecifier("live/" + username);
+				groupSpecifier.serverChannelEnabled = true;
+				groupSpecifier.multicastEnabled = true;
+				groupSpecifier.postingEnabled = true;
+				
+				receiveStream = new NetStream(netConnection, groupSpecifier.groupspecWithAuthorizations());
+				receiveStream.addEventListener(NetStatusEvent.NET_STATUS, netStatus);
+				
+				netGroup = new NetGroup(netConnection, groupSpecifier.groupspecWithAuthorizations());
+				netGroup.addEventListener(NetStatusEvent.NET_STATUS, netStatus);
+			}
+			
+			public function postMessage(messageText:String):void {
+				if(joinedGroup) {
+					var message:Object = new Object;
+					message.user = currentUsername;
+					message.text = messageText;
+					message.sequence = sequenceNumber++;
+					message.sender = netConnection.nearID;
+					netGroup.post(message);
+				} else {
+					Alert.show("NetGroup not connected");
+				}
+			}
+		]]>
+	</fx:Script>
+	<mx:UIComponent id="userVD" x="0" y="0" width="570" height="400"/>
+</s:Application>

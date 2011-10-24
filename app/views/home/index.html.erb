@@ -1,0 +1,19 @@
+<div class="col33">
+  <img src="/images/makefriends.png" alt="Make Friends" id="make_friends" />
+</div>
+<div class="col66">
+  <div id="intro">
+    <h1>Make Friends</h1>
+    <p>
+      The new social media network where you can meet people around the world,
+      share your talents, show your skills, learn, teach and meet celebrities.
+      Everything is just a click away from you.
+    </p>
+    <% unless current_user %>
+      <p>
+        <%= link_to "Register", register_path, :id => "register" %> / <%= link_to "Sign in", new_user_session_path, :id => "sign_in" %>
+      </p>
+    <% end %>
+  </div>
+</div>
+<div class="clear"></div>

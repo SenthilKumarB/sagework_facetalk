@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml" xml:lang="en" lang="en">
+	<head>
+	  <title>Puggli</title>
+	  <!-- blueprint CSS framework -->
+	  <%= stylesheet_link_tag "screen" %>
+		<!--[if lt IE 8] >
+		  <%= stylesheet_link_tag "ie" %>
+	  <![endif]-->
+	  <%= stylesheet_link_tag "default", "form", "jquery-ui-1.8.16.custom" %>
+	  <%= javascript_include_tag "jquery-1.6.2.min", "jquery-ui-1.8.16.custom.min" %>
+	  <script src="http://connect.facebook.net/en_US/all.js"></script>
+
+	  <%= csrf_meta_tag %>
+	</head>
+	<body>
+		<div class="container" id="page">
+		  <!-- header -->
+			  <div id="header">
+			    <!-- mainmenu -->
+			      <div id="mainmenu">
+			  	    <!-- menu -->
+			    	    <ul id="yw0">
+							<li class="active"><%= link_to "Home", :controller => "home" %></li>
+							<li>
+								<% unless current_user %>
+									<%= link_to "Login", login_url %>
+								<% else %>
+									<li><a href="#">Account</a>
+	                					<ul>
+	                						<li><a href="#">Edit Profile</a></li>
+	                					</ul>
+              						</li>
+									<li><%= link_to "Logout(#{current_user.username})", logout_url %></li>
+								<% end %>
+							</li>
+						</ul>                 
+			        <!-- menu -->
+			      </div>
+			    <!-- mainmenu -->
+			    <!-- search -->
+			    	<div id="search">
+			        <div id="div_search">
+	              <form name="load_search" id="load_search" method="post">
+	                  <div id="input_search"><input type="text" name="search_friend" id="search_friend" /></div>
+	                  <div id="bt_search"><input type="image" src="/images/search_icon.png"/></div>
+	              </form>
+	            </div>
+		        </div>
+	        <!-- search -->
+		    </div>
+		  <!-- header -->
+		  <!-- navheaderinto -->
+		    <div id="navheaderinto">
+	        <!-- logo -->
+		        <div id="logo"><img src="/images/logo.png" border="0" /></div>
+	        <!-- logo -->
+	        <!-- navmenu -->
+		        <div id="navmenu">
+	            <!-- menu -->
+			         	<ul id='ywl'>
+			         		<li><%= link_to "What's up", "#" %></li>
+			         		<li><%= link_to "Friends", :controller => "friends" %></li>
+                  			<li><%= link_to "Live", :controller => "friends", :action => "broadcast" %></li>
+			         		<li><%= link_to "Photos", "#" %></li>
+			         		<li><%= link_to "Videos", "#" %></li>
+			         	</ul>      
+	            <!-- menu -->
+		        </div>
+	        <!-- navmenu -->
+		    </div>
+	    <!-- navheaderinto -->
+	    <!-- container -->
+		    <div class="container">
+	        <div class="clear"></div>
+	        <!-- content -->
+		        <div id="content">
+	          	<!-- Flash Notice message -->
+	           		<%- flash.each do |name, msg| -%>
+            			<%= content_tag :div, msg, :class => "flash_#{name}" %>
+        				<%- end -%>
+        			<!-- Flash Notice message -->
+	            <%= yield %>
+		        </div>
+	        <!-- content -->
+		    </div>
+	    <!-- container -->
+			<!-- footer -->
+				<div id="footer">
+					&copy; 2011, Puggli. All rights reserved.
+				</div>
+	    <!-- footer -->
+		</div>
+		<!-- page -->
+	</body>
+</html>

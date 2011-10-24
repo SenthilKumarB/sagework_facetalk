@@ -1,0 +1,34 @@
+<h1>User Login</h1>
+<div class="form">
+  <p class="note">Fields with <span class="required">*</span> are required.</p>
+  <!-- form -->
+  <%= form_for @user_session, :url => {:action => "create"} do |f| %>
+    <%= f.error_messages %> 
+    <div class="row">
+      <%= f.label :username %>
+      <%= f.text_field :username %>
+      </div>
+      <div class="row">
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+      <p class="hint">
+        Hint: Your username and password are case sensitive.
+      </p>
+    </div>
+      <div class="row rememberMe">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me %>
+    </div>
+    <div class="row buttons">
+      <%= f.submit "Login" %>
+      <a href="/auth/facebook" class="auth_provider" id="facebook_connect">  
+        <%= image_tag "facebook_connect_button.gif", :alt => "Facebook", :id => "facebook" %>
+      </a> 
+      <a href="/auth/twitter" class="auth_provider" id="twitter_connect">  
+        <%= image_tag "twitter_connect_button.gif", :alt => "twitter", :id => "twitter" %>
+      </a> 
+    </div>
+
+  <% end %>
+  <!-- form -->
+</div>

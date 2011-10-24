@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   width="570" height="260" minWidth="570" minHeight="260" backgroundColor="#EFEFEF" applicationComplete="init();">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			private function init():void {
+				var camera:Camera = Camera.getCamera();
+				userVD.attachCamera(camera);
+			}
+		]]>
+	</fx:Script>
+	<mx:VideoDisplay id="userVD" x="0" y="0" width="280" height="260"/>
+	<mx:VideoDisplay id="otherVD" x="290" y="0" width="280" height="260"/>
+</s:Application>
