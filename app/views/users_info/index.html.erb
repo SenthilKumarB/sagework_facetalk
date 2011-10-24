@@ -1,0 +1,63 @@
+<% unless current_user.blank? %>
+<div class="col33">
+  <div id="left_menu" style="background:#F5F5F5;">
+    <a href="#" id="users_info"><span style="width:20px;">User Information</span></a> <br/>
+    <a href="#" id="users_work">User Work</a> <br/>
+    <a href="#" id="users_address">User address</a><br/>
+    <a href="#" id="users_education">User Education</a><br/>
+    <a href="#" id="users_phone">User Phone</a><br/>
+    <a href="#" id="users_profile_picture">User Profile Picture</a><br/>
+    <a href="#" id="users_setting">User Setting</a>
+  </div>
+</div>
+<!-- form -->
+<div class="col66 form">
+  <%= form_tag ({:controller => "users_info", :action => "update_profile"},  :multipart => true ) do %>
+      <div id="users_profile">
+        <%= render :partial => "users_info" %>
+      </div>
+
+      <div class="row buttons">
+        <%= submit_tag "Save Changes" %>
+      </div>
+  <% end %>
+</div>
+<% end %>
+<!-- form -->
+<script>
+    $(document).ready(function() {
+        $("#users_work").click(function() {
+            $("#users_profile").html("<%= escape_javascript(render(:partial => "users_work")) %>");
+        });
+
+        $("#users_info").click(function() {
+            $("#users_profile").html("<%= escape_javascript(render(:partial => "users_info")) %>");
+        });
+
+        $("#users_address").click(function() {
+            $("#users_profile").html("<%= escape_javascript(render(:partial => "users_address")) %>");
+        });
+
+         $("#users_education").click(function() {
+            $("#users_profile").html("<%= escape_javascript(render(:partial => "users_education")) %>");
+        });
+
+
+        $("#users_phone").click(function() {
+            $("#users_profile").html("<%= escape_javascript(render(:partial => "users_phone")) %>");
+        });
+
+
+        $("#users_profile_picture").click(function() {
+            $("#users_profile").html("<%= escape_javascript(render(:partial => "users_profile_picture")) %>");
+        });
+
+        $("#users_setting").click(function() {
+            $("#users_profile").html("<%= escape_javascript(render(:partial => "users_setting")) %>");
+        });
+
+        $(".dateField").live("click", function() {
+            $(this).datepicker({ dateFormat: 'mm/dd/yy' }).focus();
+        });
+    });
+</script>

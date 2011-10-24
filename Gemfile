@@ -14,6 +14,8 @@ gem 'omniauth'
 
 gem 'fb_graph'
 
+gem 'paperclip'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
@@ -31,8 +33,11 @@ gem 'fb_graph'
 # gem 'aws-s3', :require => 'aws/s3'
 
 gem 'factory_girl'
-#gem 'contacts'
-#gem 'hpricot'
+
+# localhost
+
+# gem 'contacts'
+# gem 'hpricot'
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators

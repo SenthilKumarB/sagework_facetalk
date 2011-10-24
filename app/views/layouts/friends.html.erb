@@ -12,7 +12,28 @@
     <script src="http://connect.facebook.net/en_US/all.js"></script>
 
     <%= csrf_meta_tag %>
+    <script>
+    $(function(){
+        $(".sublinks").hide();
+      $('.dropdown').click(function(){
+        $('.sublinks').stop(false, true).hide();
 
+        var submenu = $(this).parent().next();
+
+        submenu.css({
+          position:'absolute',
+          top: $(this).offset().top + $(this).height() + 'px',
+          left: $(this).offset().left + 'px',
+          zIndex:1000
+        });
+
+        submenu.stop().slideDown(300);
+        submenu.mouseleave(function(){
+        $(this).slideUp(300);
+        });
+      });
+    });
+    </script>
 
   </head>
   <body>
@@ -22,21 +43,21 @@
           <!-- mainmenu -->
             <div id="mainmenu">
               <!-- menu -->
-                <ul id="yw0">
+              <ul id="yw0">
               <li class="active"><%= link_to "Home", :controller => "home" %></li>
               <li>
                 <% unless current_user %>
                   <%= link_to "Login", login_url %>
                 <% else %>
-                  <li><a href="#">Account</a>
-                    <ul>
-                      <li><a href="#">Edit Profile</a></li>
-                    </ul>
-                  </li>
+                  <li><a href="#"  class="dropdown" >Account</a></li>
+                  <li class="sublinks">
+                                  <%= link_to "Edit Profile",:controller =>"users_info", :action => "index" %>
+
+                                </li>
                   <li><%= link_to "Logout(#{current_user.username})", logout_url %></li>
                 <% end %>
               </li>
-            </ul>                 
+            </ul> 
               <!-- menu -->
             </div>
           <!-- mainmenu -->

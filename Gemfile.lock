@@ -46,9 +46,7 @@ GEM
       xpath (~> 0.1.4)
     childprocess (0.2.2)
       ffi (~> 1.0.6)
-    contacts (1.2.4)
-      gdata (= 1.1.1)
-      json (>= 0.4.1)
+    cocaine (0.2.0)
     cucumber (1.0.6)
       builder (>= 2.1.2)
       diff-lcs (>= 1.1.2)
@@ -73,7 +71,6 @@ GEM
       httpclient (>= 2.2.0.2)
       rack-oauth2 (>= 0.9.4)
     ffi (1.0.9-x86-mingw32)
-    gdata (1.1.1)
     gherkin (2.4.21-x86-mingw32)
       json (>= 1.4.6)
     httpclient (2.2.2)
@@ -134,6 +131,11 @@ GEM
       oa-more (= 0.3.0)
       oa-oauth (= 0.3.0)
       oa-openid (= 0.3.0)
+    paperclip (2.4.5)
+      activerecord (>= 2.3.0)
+      activesupport (>= 2.3.2)
+      cocaine (>= 0.0.2)
+      mime-types
     polyglot (0.3.2)
     pyu-ruby-sasl (0.0.3.3)
     rack (1.2.3)
@@ -216,7 +218,6 @@ PLATFORMS
 
 DEPENDENCIES
   authlogic
-  contacts
   cucumber
   cucumber-rails
   database_cleaner
@@ -224,6 +225,7 @@ DEPENDENCIES
   fb_graph
   mysql
   omniauth
+  paperclip
   rails (= 3.0.9)
   rails3-generators
   rspec

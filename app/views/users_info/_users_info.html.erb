@@ -1,0 +1,134 @@
+<% unless current_user.blank? %>
+<div class="row">
+  <label class="label">Firstname:</label>
+  <%= text_field :users_info, :first_name, :value => @users_info.first_name %>
+</div>
+
+<div class="row">
+  <label class="label">Lastname:</label>
+  <%= text_field :users_info, :last_name, :value => @users_info.last_name %>
+</div>
+
+<div class="row">
+  <label class="label">Gender:</label>
+  <%= select :users_info, :gender, options_for_select([["Undefined", "Undefined"], ["Female", "Female"], ["Male", "Male"]], :value => @users_info.gender) %>
+</div>
+
+<div class="row">
+  <label class="label">Show Gender:</label>
+  <%= radio_button_tag "users_info[show_gender]", "1", :checked => true %> Yes
+  <%= radio_button_tag "users_info[show_gender]", "0" %> No
+  
+</div>
+
+<div class="row">
+  <label class="label">Date of birth:</label>
+  <%= text_field :users_info, :birthday_date, :class => "dateField", :value => @users_info.birthday_date %>
+</div>
+
+<div class="row">
+  <label class="label">Show Birthday:</label>
+  <%= radio_button_tag "users_info[show_birthday]", "1", :checked => true %> Yes
+  <%= radio_button_tag "users_info[show_birthday]", "0" %> No
+</div>
+
+<div class="row">
+  <label class="label">Home page:</label>
+  <%= text_field :users_info, :homepage, :value => @users_info.homepage %>
+</div>
+
+<div class="row">
+  <label class="label">Home town:</label>
+  <%= text_field :users_info, :hometown, :value => @users_info.hometown %>
+</div>
+
+<div class="row">
+  <label class="label">Languages:</label>
+  <%= text_field :users_info, :languages, :value => @users_info.languages %>
+</div>
+
+<div class="row">
+  <label class="label">About Me:</label>
+  <%= text_area :users_info, :about_me, :value => @users_info.about_me, :cols => 30, :rows => 5 %>
+</div>
+
+<div class="row">
+  <label class="label">Relationship:</label>
+  <%= select :users_info, :relationship, options_for_select([["Single","Single" ], ["Married", "Married"], ["relation with", "relation with"], ["Separated", "Separated"], ["Divorce", "Divorce"], ["Engaged", "Engaged"], ["Open relation", "Open relation"], ["Complicated", "Complicated"], ["Widow", "Widow"], ["Not Specified", "Not Specified"]], :value => @users_info.relationship) %>
+</div>
+
+<div class="row">
+  <label class="label">Relationship with:</label>
+  <%= text_field :users_info, :relationship_with, :value => @users_info.relationship_with %>
+</div>
+
+<div class="row">
+  <label class="label">Relationship confirmed:</label>
+  <%= radio_button_tag "users_info[relationship_confirmed]", "1", :checked => true %> Yes
+  <%= radio_button_tag "users_info[relationship_confirmed]", "0" %> No
+</div>
+<br/>
+
+<div class="row">
+  <label class="label">Interest:</label>
+  <%= text_field :users_info, :interest, :value => @users_info.interest %>
+</div>
+
+<div class="row">
+  <label class="label">Religion:</label>
+  <%= text_field :users_info, :religion, :value => @users_info.religion %>
+</div>
+
+<div class="row">
+  <label class="label">Religion description:</label>
+  <%= text_area :users_info, :religion_description, :value => @users_info.religion_description, :cols => 30, :rows => 5 %>
+</div>
+
+<div class="row">
+  <label class="label">Political views:</label>
+  <%= text_field :users_info, :political_views, :value => @users_info.political_views %>
+</div>
+
+<div class="row">
+  <label class="label">Political description:</label>
+  <%= text_area :users_info, :political_description, :value => @users_info.political_description, :cols => 30, :rows => 5 %>
+</div>
+
+<div class="row">
+  <label class="label">People who inspire you:</label>
+  <%= text_area :users_info, :people_who_inspire_you, :value => @users_info.people_who_inspire_you, :cols => 30, :rows => 5 %>
+</div>
+
+
+<div class="row">
+  <label class="label">Favorite Quotations:</label>
+  <%= text_area :users_info, :favorite_quotations, :value => @users_info.favorite_quotations, :cols => 30, :rows => 5 %>
+</div>
+
+
+<div class="row">
+  <label class="label">Music:</label>
+  <%= text_field :users_info, :music, :value => @users_info.music %>
+</div>
+
+
+<div class="row">
+  <label class="label">Movies:</label>
+  <%= text_field :users_info, :movies, :value => @users_info.movies %>
+</div>
+
+<div class="row">
+  <label class="label">Books:</label>
+  <%= text_field :users_info, :books, :value => @users_info.books %>
+</div>
+
+<div class="row">
+  <label class="label">Television:</label>
+  <%= text_field :users_info, :television, :value => @users_info.television %>
+</div>
+
+<div class="row">
+  <label class="label">Games:</label>
+  <%= text_field :users_info, :games, :value => @users_info.games %>
+</div>
+<% end %>

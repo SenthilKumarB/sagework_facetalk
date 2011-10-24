@@ -1,0 +1,11 @@
+<% unless current_user.blank? %>
+<div class="row">
+  <label class="label">High School Institution:</label>
+  <%= text_field :users_education, :high_school_institution, :value => @users_education.high_school_institution %>
+</div>
+
+<div class="row">
+  <label class="label">College University Institutions:</label>
+  <%= text_field :users_education, :college_university_institution, :value => @users_education.college_university_institution %>
+</div>
+<% end %>

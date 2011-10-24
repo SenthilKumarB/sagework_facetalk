@@ -1,0 +1,24 @@
+<% unless current_user.blank? %>
+<div class="row">
+  <label class="label">Type:</label>
+  <%= text_field :users_phone, :mobile_type, :value => @users_phone.mobile_type %>
+</div>
+
+<div class="row">
+  <label class="label">Number:</label>
+  <%= text_field :users_phone, :mobile_number, :value => @users_phone.mobile_number %>
+</div>
+
+<div class="row">
+  <label class="label">Findeble:</label>
+  <%= text_field :users_phone, :findeble, :value => @users_phone.findeble %>
+</div>
+
+<div class="row">
+  <label class="label">Visiblity:</label>
+  <%= radio_button_tag "users_phone[visiblity]", "1", :checked => true %> Yes
+  <%= radio_button_tag "users_phone[visiblity]", "0" %> No
+</div>
+<% end %>
+
+

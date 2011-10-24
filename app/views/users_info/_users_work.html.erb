@@ -1,0 +1,47 @@
+<% unless current_user.blank? %>
+<div class="row">
+  <label class="label">Employer:</label>
+  <%= text_field :users_work, :employer, :value => @users_work.employer %>
+</div>
+
+<div class="row">
+  <label class="label">Position:</label>
+  <%= text_field :users_work, :position, :value => @users_work.position %>
+</div>
+
+<div class="row">
+  <label class="label">Description:</label>
+  <%= text_area :users_work, :description, :value => @users_work.description, :cols => 30, :rows => 5 %>
+</div>
+
+<div class="row">
+  <label class="label">City:</label>
+  <%= text_field :users_work, :city, :value => @users_work.city %>
+</div>
+
+<div class="row">
+  <label class="label">State:</label>
+  <%= text_field :users_work, :state_province, :value => @users_work.state_province %>
+</div>
+
+<div class="row">
+  <label class="label">Country:</label>
+  <%= text_field :users_work, :country, :value => @users_work.country %>
+</div>
+
+<div class="row">
+  <label class="label">Current Job:</label>
+  <%= radio_button_tag "users_work[current_job]", "1", :checked => true %> Yes
+  <%= radio_button_tag "users_work[current_job]", "0" %> No
+</div>
+
+<div class="row">
+  <label class="label">Start Date:</label>
+  <%= text_field :users_work, :start_in, :class => "dateField", :value => @users_work.start_in %>
+</div>
+
+<div class="row">
+  <label class="label">End Date:</label>
+  <%= text_field :users_work, :end_in, :class => "dateField", :value => @users_work.end_in %>
+</div>
+<% end %>

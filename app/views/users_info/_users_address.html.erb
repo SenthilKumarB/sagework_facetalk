@@ -1,0 +1,32 @@
+<% unless current_user.blank? %>
+<div class="row">
+  <label class="label">Address:</label>
+  <%= text_field :users_address, :address, :value => @users_address.address %>
+</div>
+
+<div class="row">
+  <label class="label">City:</label>
+  <%= text_field :users_address, :city, :value => @users_address.city %>
+</div>
+
+<div class="row">
+  <label class="label">State:</label>
+  <%= text_field :users_address, :state_province, :value => @users_address.state_province %>
+</div>
+
+<div class="row">
+  <label class="label">Country:</label>
+  <%= text_field :users_address, :country, :value => @users_address.country %>
+</div>
+
+<div class="row">
+  <label class="label">Zip Code:</label>
+  <%= text_field :users_address, :zip_code, :value => @users_address.zip_code %>
+</div>
+
+<div class="row">
+  <label class="label">Zip Code Privacy:</label>
+  <%= text_field :users_address, :zip_privacy, :value => @users_address.zip_privacy %>
+</div>
+<% end %>
+

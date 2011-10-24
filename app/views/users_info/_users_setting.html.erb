@@ -1,0 +1,17 @@
+<% unless current_user.blank? %>
+<div class="row">
+  <label class="label">TimeZone:</label>
+  <%= time_zone_select :users_setting, :timezone %>
+
+</div>
+
+<div class="row">
+  <label class="label">Language:</label>
+  <%= text_field :users_setting, :language, :value => @users_setting.language %>
+</div>
+
+<div class="row">
+  <label class="label">Currency:</label>
+  <%= text_field :users_setting, :currency, :value => @users_setting.currency %>
+</div>
+<% end %>

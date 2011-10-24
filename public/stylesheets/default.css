@@ -810,6 +810,7 @@ div.search-form {
 .note, .flash_notice {
   margin: 10px 0;
   padding: 10px;
+  text-align: center;
   background-color: #FFFFDD;
   border: 1px solid #EEEECC;
 }
@@ -942,17 +943,81 @@ input[type="text"]:hover, input[type="password"]:hover, textarea:hover {
   padding: 10px;
 }
 
-li ul{
-    display: none;
-    left: 330px;
-    top: 31px;
-    background: #0276FD;
-    position: absolute;
+#mainmenu ul li.sublinks a
+{
+  color:#000000;
+  background:#fff;
+  border-bottom:1px solid #cccccc;
+  font-weight:normal;
+  text-decoration:none;
+  display:block;
+  width:160px;
+  text-align:center;
+  margin-top:0px;
 }
 
-li ul li a {
-    padding: 2px 5px;
+#mainmenu ul li.sublinks a:hover
+{
+  color:#FFF;
+  background:#3F8AFC;
+  font-weight:normal;
+  text-decoration:none;
+  display:block;
+  width:160px;
+  text-align:center;
+
+
 }
-li:hover ul, li.over ul {
+
+#mainmenu ul li.sublinks
+{
+  display:none;
+    border-bottom:1px solid #cccccc;
+    margin-top:15px;
+    list-style:none;
+}
+
+#left_menu{
+    padding: 80px;
+    margin: 10px;
+    width: 120px;
+    line-height: 25px;
+ }
+
+#left_menu a{
+    text-decoration:none;
+    color:#000;
     display: block;
+    width: 100%;
+}
+
+#left_menu a:hover{
+    color:#FFF;
+    text-decoration:none;
+    background:#3F8AFC;
+}
+
+#photo_upload{
+    float:right;
+    margin-right:100px;
+    border: 1px solid;
+    height:100px;
+    width:100px;
+}
+
+#users_profile .row .label {
+    float: left;
+    width: 140px;
+}
+
+#users_profile{
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top:10px;
+    border: 1px solid;
+    padding:20px;
+   
+}
+
+#left_menu span{
+  width:100px;  
 }

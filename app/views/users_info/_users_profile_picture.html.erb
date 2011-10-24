@@ -1,0 +1,14 @@
+<% unless current_user.blank? %>
+
+
+    <div id="photo_upload">
+        <%= image_tag @users_profile_picture.photo.url(:small) %>
+    </div>
+
+    <div>
+        <span>Select an image file on your computer</span><br/>
+        <%= file_field :users_profile_picture, :photo %>
+   </div>
+   <div style="float:none;clear: right;">
+   </div>
+<% end %> 
