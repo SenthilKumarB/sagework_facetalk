@@ -1,5 +1,6 @@
 require 'rubygems'
 # require 'hpricot'
+require 'jcode' if RUBY_VERSION < '1.9'
 
 # Set up gems listed in the Gemfile.
 ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)

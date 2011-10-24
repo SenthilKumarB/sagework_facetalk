@@ -13,7 +13,6 @@ gem 'mysql'#, '~> 0.2.6'
 gem 'omniauth'
 
 gem 'fb_graph'
-gem 'jcode'
 
 # Use unicorn as the web server
 # gem 'unicorn'
