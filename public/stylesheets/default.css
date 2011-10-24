@@ -1000,9 +1000,6 @@ input[type="text"]:hover, input[type="password"]:hover, textarea:hover {
 #photo_upload{
     float:right;
     margin-right:100px;
-    border: 1px solid;
-    height:100px;
-    width:100px;
 }
 
 #users_profile .row .label {
