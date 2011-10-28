@@ -12,14 +12,13 @@
   <div id="display">
     <% unless @current_user_whats_up.blank? %>
         <% @current_user_whats_up.each do |whats_up| %>
-           
-            <div class="post_border">
-                <div class="col15">
-                  <% unless whats_up.user.users_profile_picture.blank? %>
-                    <%= image_tag whats_up.user.users_profile_picture.photo.url(:small), :height => "64" %>
-                  <% end %>
-                </div>
 
+            <div class="post_border">
+              <% unless whats_up.user.users_profile_picture.blank? %>
+                <div class="col15">
+                    <%= image_tag whats_up.user.users_profile_picture.photo.url(:small), :height => "64" %>
+                </div>
+               <% end %>
                 <div style="margin-left:85px;">
                         <%= link_to whats_up.user.username, "#" %>
                         <img src="/images/minimalistica/png/16x16/clock.png"/>
@@ -33,11 +32,11 @@
                             <a href="#" class="post" id="<%= whats_up.id %>">Comment</a> <br/>
                                 <% unless whats_up.whats_up_comment.blank? %>
                                 <div style="border:1px solid #CCC;">
+
                                     <% whats_up.whats_up_comment.each do |comment| %>
-                                      <% unless comment.user.users_profile.blank? %>
-                                        <%= image_tag comment.user.users_profile_picture.photo.url(:small), :height => "32" %>
+                                      <% unless comment.user.users_profile_picture.blank? %>
+                                      <%= image_tag comment.user.users_profile_picture.photo.url(:small), :height => "32" %>
                                       <% end %>
-                                    <% end %>
                                       <%= link_to comment.user.username, "#" %>
                                       <%= comment.comment %><br/>
                                     <% end %>
