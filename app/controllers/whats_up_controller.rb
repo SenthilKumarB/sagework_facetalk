@@ -1,4 +1,6 @@
 class WhatsUpController < ApplicationController
+  before_filter :require_user
+  before_filter :authenitcate_heroku
   def index
     @whats_up = WhatsUp.new
     @current_user_whats_up = WhatsUp.find(:all, :order => "created_at DESC")
