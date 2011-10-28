@@ -52,6 +52,7 @@
                   <li><a href="#"  class="dropdown" >Account</a></li>
                   <li class="sublinks">
                                   <%= link_to "Edit Profile",:controller =>"users_info", :action => "index" %>
+                                  <%= link_to "Privacy Settings",:controller =>"users_info", :action => "privacy_settings" %>
 
                                 </li>
                   <li><%= link_to "Logout(#{current_user.username})", logout_url %></li>
