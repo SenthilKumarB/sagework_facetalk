@@ -15,7 +15,9 @@
            
             <div class="post_border">
                 <div class="col15">
+                  <% unless whats_up.user.users_profile_picture.blank? %>
                     <%= image_tag whats_up.user.users_profile_picture.photo.url(:small), :height => "64" %>
+                  <% end %>
                 </div>
 
                 <div style="margin-left:85px;">
@@ -31,9 +33,11 @@
                             <a href="#" class="post" id="<%= whats_up.id %>">Comment</a> <br/>
                                 <% unless whats_up.whats_up_comment.blank? %>
                                 <div style="border:1px solid #CCC;">
-
                                     <% whats_up.whats_up_comment.each do |comment| %>
-                                      <%= image_tag comment.user.users_profile_picture.photo.url(:small), :height => "32" %>
+                                      <% unless comment.user.users_profile.blank? %>
+                                        <%= image_tag comment.user.users_profile_picture.photo.url(:small), :height => "32" %>
+                                      <% end %>
+                                    <% end %>
                                       <%= link_to comment.user.username, "#" %>
                                       <%= comment.comment %><br/>
                                     <% end %>

@@ -4,8 +4,10 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_session, :current_user, :authenitcate_heroku
   protected  
     def authenitcate_heroku
-      authenticate_or_request_with_http_basic do |username, password|
-        username == "senthil" && password == "senthil"
+      if Rails.env.production?
+        authenticate_or_request_with_http_basic do |username, password|
+          username == "gg" && password == "ganeshg"
+        end
       end
     end
 
