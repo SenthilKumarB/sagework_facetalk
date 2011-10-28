@@ -1,0 +1,349 @@
+<div id="custom_default_privacy">
+  <h1>Control Your Default Privacy</h1>
+  <%= form_tag({:controller=>'users_info', :action =>'save'}) do %>
+      <div id="privacy_label">
+        <label>Public</label>
+        <label>Friends</label>
+        <label>Custom</label>
+      </div>
+      <br/>
+
+      <div id="privacy_input">
+        <input type="radio" name="user_privacy" value="public" id="public"  />
+        <input type="radio" name="user_privacy" value="friends" id="friends"  />
+        <input type="radio" name="user_privacy"  onclick="custom_checked();"/>
+      </div>
+      <br/>
+
+      <%= submit_tag('update settings') %>
+
+  <% end %>
+</div>
+<div class="post_border">
+  <h3>How You Connect</h3>
+  <span>Control how you connect with people you know.</span>
+  <a href="#" class="edit_settings" id="edit_connect">Edit Settings</a>
+</div>
+
+<div class="post_border">
+  <h3>How Tags Work</h3>
+  <span>Control what happens when friends tag you or your content.</span>
+  <a href="#" class="edit_settings" id="edit_work">Edit Settings</a>
+</div>
+
+<div class="post_border">
+  <h3>Apps and Websites</h3>
+  <span>Control what gets shared with apps, games and websites.</span>
+  <a href="#" class="edit_settings" id="edit_websites">Edit Settings</a>
+</div>
+
+<div class="post_border">
+  <h3>Limit the Audience for Past Posts</h3>
+  <span>Limit the audience for posts you shared with more than friends.</span>
+  <a href="#" class="edit_settings" id="manage_audience">Manage Past Post Visibility</a>
+</div>
+
+<div class="post_border">
+  <h3>Blocked People and Apps</h3>
+  <span>Manage the people and apps you've blocked.</span>
+  <a href="#" class="edit_settings" id="manage_blocked">Manage Blocking</a>
+</div>
+
+<div id="myconnect_dialog" title="How You Connect" style="display:none;">
+  <span>Who can look up your profile by name or contact info?</span><br/>
+  <select class="edit_settings">
+    <option value="30">Everyone</option>
+    <option selected="1" value="50">Friends of Friends</option>
+    <option value="40">Friends</option>
+  </select><br/>
+  <span>Who can send you friend requests?</span><br/>
+  <select class="edit_settings">
+    <option value="30">Everyone</option>
+    <option selected="1" value="50">Friends of Friends</option>
+  </select> <br/>
+  <span>Who can send you Facebook messages?</span><br/>
+  <select class="edit_settings">
+    <option value="30">Everyone</option>
+    <option selected="1" value="50">Friends</option>
+    <option value="40">Friends</option>
+  </select> <br/>
+  <span>Who can post on your Wall?</span><br/>
+  <select class="edit_settings">
+    <option selected="1" value="50">Friends</option>
+    <option value="40">Only Me</option>
+  </select> <br/>
+  <span>Who can see Wall posts by others on your profile?</span><br/>
+  <select class="edit_settings">
+    <option value="30">Public</option>
+    <option selected="1" value="50">Friends of Friends</option>
+    <option value="40">Friends</option>
+    <option value="40">Only Me</option>
+    <option value="40">Custom</option>
+    <option value="40">Close Friends</option>
+  </select><br/>
+</div>
+
+<div id="mywork_dialog" title="How Tags Work" style="display:none;">
+  <span> Profile Review of posts friends tag you in before they go on your profile</span><br/>
+  <p class="edit_settings">Off ></p><br/>
+  <span>Tag Review of tags that friends want to add to your posts</span><br/>
+   <p class="edit_settings">Off ></p><br/>
+  <span>Maximum Profile Visibility of posts you're tagged in once they're on your profile</span><br/>
+    <select class="edit_settings">
+    <option value="30">Public</option>
+    <option selected="1" value="50">Friends of Friends</option>
+    <option value="40">Friends</option>
+    <option value="40">Only Me</option>
+    <option value="40">Custom</option>
+    <option value="40">Close Friends</option>
+  </select><br/>
+  <span>Tag Suggestions when friends upload photos that look like you</span><br/>
+  <p class="edit_settings">On > </p><br/>
+  <span>Friends Can Check You Into Places using the mobile Places app</span><br/>
+  <p class="edit_settings">On ></p>
+</div>
+
+<div id="mywebsites_dialog" title="Apps and Websites" style="display:none;">
+  You're using 19 apps, games and websites, most recently:
+</div>
+
+<div id="myaudience_dialog" title="Limit the Audience for Past Posts" style="display:none;">
+     * If you use this tool, content on your profile you've shared with more than your friends (ex: Public posts) on your Wall will change to Friends. Remember: people who are tagged and their friends may see those posts as well.
+</div>
+
+<div id="myblocked_dialog" title="Blocked People and Apps" style="display:none;">
+Add friends to your Restricted list
+When you add friends to your Restricted list they can only see the information and posts that you make public. Facebook does not notify your friends when you add them to your Restricted list. Edit List.
+</div>
+
+<div id="mydialog" title="Custom Privacy" style="display:none;">
+  <%= form_tag({:action => "privacy_settings"}, :id => "custom_privacy") do %>
+      <span style="margin-right:150px;font-weight:bold;">Make This visible to</span> <br/> <br/>
+      <label style="margin-right:150px;">These people or lists:</label>
+      <select id="people_lists">
+        <option selected="1" value="50">Friends of Friends</option>
+        <option value="40">Friends</option>
+        <option value="30">Specific People or Lists...</option>
+        <option value="10">Only Me</option>
+      </select> <br/><br/>
+      <input class="people_list" id="specific_people_of_list" type="text" name="specific_people_of_list"><br/>
+      <span id="specific_people_comment">Only the people above can see this.</span>
+      <span id="friends_comment">Only friends can see this.</span>
+      <span id="friends_of_friends_comment">Only friends of friends can see this.</span>
+      <span id="only_me_comment">Only I can see this.</span> <br/><br/>
+      <span style="margin-right:205px; font-weight:bold;">Hide this from</span><br/><br/>
+      <label style="margin-right:150px;">These people or lists:</label>
+      <input class="people_list" type="text" name="term">
+
+  <% end %>
+</div>
+
+<script>
+
+    function custom_checked() {
+        if (document.getElementById("mydialog").checked = true)
+        {
+
+            $("#mydialog").dialog({
+                resizable: false,
+                height: 350,
+                width: 400,
+                modal: true,
+                buttons: {
+                    Save: function() {
+                        //                        $(this).dialog('destroy');
+                        $("#custom_privacy").submit();
+                    },
+                    Cancel: function(e) {
+                        e.preventDefault();
+                        $(this).dialog("close");
+                    }
+                }
+            });
+
+
+        }
+    }
+    $("#edit_connect").click(function(evnt) {
+        $("#myconnect_dialog").dialog({
+            resizable: false,
+            height: 350,
+            width: 750,
+            modal: true,
+            buttons: {
+                Done: function() {
+                    $(this).dialog('destroy');
+
+                }
+
+            }
+        });
+    });
+
+    $("#edit_work").click(function(evnt) {
+        $("#mywork_dialog").dialog({
+            resizable: false,
+            height: 350,
+            width: 900,
+            modal: true,
+            buttons: {
+                Done: function() {
+                    $(this).dialog('destroy');
+
+                }
+
+            }
+        });
+    });
+
+    $("#edit_websites").click(function(evnt) {
+        $("#mywebsites_dialog").dialog({
+            resizable: false,
+            height: 350,
+            width: 400,
+            modal: true,
+            buttons: {
+                Done: function() {
+                    $(this).dialog('destroy');
+
+                }
+
+            }
+        });
+    });
+
+    $("#manage_audience").click(function(evnt) {
+        $("#myaudience_dialog").dialog({
+            resizable: false,
+            height: 350,
+            width: 400,
+            modal: true,
+            buttons: {
+                Limit_Old_Posts: function() {
+                    $(this).dialog('destroy');
+
+                },
+                Cancel: function(e) {
+                        e.preventDefault();
+                        $(this).dialog("close");
+                    }
+
+            }
+        });
+    });
+
+    $("#manage_blocked").click(function(evnt) {
+        $("#myblocked_dialog").dialog({
+            resizable: false,
+            height: 350,
+            width: 400,
+            modal: true,
+            buttons: {
+                Done: function() {
+                    $(this).dialog('destroy');
+
+                }
+
+            }
+        });
+    });
+
+
+    $(document).ready(function() {
+        $("#mydialog").hide();
+        $("#specific_people_of_list").hide();
+        $("#specific_people_comment").hide();
+        $("#friends_comment").hide();
+        $("#friends_of_friends_comment").hide();
+        $("#only_me_comment").hide();
+    });
+
+    $("#mydialog").click(function(evnt) {
+        var x = document.getElementById("people_lists").selectedIndex;
+        var y = document.getElementById("people_lists").options;
+        if (y[x].text == "Specific People or Lists...") {
+            $("#specific_people_of_list").show();
+            $("#specific_people_comment").show();
+            $("#only_me_comment").hide();
+            $("#friends_comment").hide();
+            $("#friends_of_friends_comment").hide();
+        }
+        else if (y[x].text == "Friends of Friends")
+        {
+            $("#friends_of_friends_comment").show();
+            $("#only_me_comment").hide();
+            $("#friends_comment").hide();
+            $("#specific_people_comment").hide();
+            $("#specific_people_of_list").hide();
+        }
+        else if (y[x].text == "Friends")
+        {
+            $("#friends_comment").show();
+            $("#friends_of_friends_comment").hide();
+            $("#only_me_comment").hide();
+            $("#specific_people_comment").hide();
+            $("#specific_people_of_list").hide();
+        }
+        else
+        {
+            $("#only_me_comment").show();
+            $("#specific_people_of_list").hide();
+            $("#friends_comment").hide();
+            $("#friends_of_friends_comment").hide();
+            $("#specific_people_comment").hide();
+        }
+    });
+
+    $(function() {
+        function split(val) {
+            return val.split(/,\s*/);
+        }
+
+        function extractLast(term) {
+            return split(term).pop();
+        }
+
+        $(".people_list")
+            // don't navigate away from the field on tab when selecting an item
+                .bind("keydown", function(event) {
+            if (event.keyCode === $.ui.keyCode.TAB &&
+                $(this).data("autocomplete").menu.active) {
+                event.preventDefault();
+            }
+        })
+                .autocomplete({
+            source: function(request, response) {
+                $.getJSON("<%= privacy_settings_path(:format => :json) %>", {
+                    term: extractLast(request.term)
+                }, response);
+
+            },
+            search: function() {
+                // custom minLength
+                var term = extractLast(this.value);
+                if (term.length < 0) {
+                    return false;
+                }
+            },
+            focus: function() {
+                // prevent value inserted on focus
+                return false;
+            },
+            select: function(event, ui) {
+                var terms = split(this.value);
+                // remove the current input
+                terms.pop();
+                // add the selected item
+                terms.push(ui.item.value);
+                // add placeholder to get the comma-and-space at the end
+                terms.push("");
+                this.value = terms.join(", ");
+                return false;
+            }
+        });
+    });
+
+
+</script>
+
+

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111024045809) do
+ActiveRecord::Schema.define(:version => 20111025113727) do
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
@@ -21,6 +21,24 @@ ActiveRecord::Schema.define(:version => 20111024045809) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "uhats_ups", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "whats_up_type"
+    t.string   "url"
+    t.string   "description"
+    t.integer  "for_id"
+    t.integer  "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_privacies", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "privacy_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "username",          :null => false
@@ -33,6 +51,7 @@ ActiveRecord::Schema.define(:version => 20111024045809) do
     t.string   "provider"
     t.string   "uid"
     t.string   "nick_name"
+    t.boolean  "visible"
   end
 
   add_index "users", ["persistence_token"], :name => "index_users_on_persistence_token", :unique => true
@@ -128,6 +147,25 @@ ActiveRecord::Schema.define(:version => 20111024045809) do
     t.boolean  "current_job"
     t.date     "start_in"
     t.date     "end_in"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "whats_up_comments", :force => true do |t|
+    t.integer  "whats_up_id"
+    t.integer  "user_id"
+    t.string   "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "whats_ups", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "whats_up_type"
+    t.string   "url"
+    t.string   "description"
+    t.integer  "for_id"
+    t.integer  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

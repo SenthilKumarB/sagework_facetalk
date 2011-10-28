@@ -57,7 +57,7 @@
                   <li><%= link_to "Logout(#{current_user.username})", logout_url %></li>
                 <% end %>
               </li>
-            </ul> 
+            </ul>
               <!-- menu -->
             </div>
           <!-- mainmenu -->
@@ -87,7 +87,7 @@
                   <li><%= link_to "Live", :controller => "friends", :action => "broadcast" %></li>
                   <li><%= link_to "Photos", "#" %></li>
                   <li><%= link_to "Videos", "#" %></li>
-                </ul>      
+                </ul>
               <!-- menu -->
             </div>
           <!-- navmenu -->
@@ -107,7 +107,7 @@
                 <% if current_user.uid && current_user.provider == "facebook" %>
                   <img src="https://graph.facebook.com/<%= current_user.uid %>/picture?type=large" class="picprofile" />
                 <% elsif current_user.uid && current_user.provider == "twitter" %>
-                  <img src="http://api.twitter.com/1/users/profile_image?screen_name=<%= current_user.nick_name %>&size=original" class="picprofile" />  
+                  <img src="http://api.twitter.com/1/users/profile_image?screen_name=<%= current_user.nick_name %>&size=original" class="picprofile" />
                 <% else %>
                   <img src="/images/minimalistica/png/128x128/user.png" class="picprofile" />
                 <% end %>
@@ -185,7 +185,7 @@
                         </div>
                       <% end %>
                     <% end %>
-                 </div>          
+                 </div>
                 </div>
             <!-- content -->
         </div>

@@ -16,6 +16,8 @@ gem 'fb_graph'
 
 gem 'paperclip'
 
+gem 'rails3-jquery-autocomplete'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
@@ -37,7 +39,7 @@ gem 'factory_girl'
 # localhost
 
 # gem 'contacts'
- gem 'hpricot'
+# gem 'hpricot'
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators

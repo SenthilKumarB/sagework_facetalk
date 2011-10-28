@@ -1,0 +1,2 @@
+module WhatsUpHelper
+end

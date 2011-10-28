@@ -755,8 +755,12 @@ div.search-form {
 }
 
 /* Grid */
-.col20, .col25, .col30, .col33, .col50, .col60, .col66, .col70, .col80, .col100 {
+.col15, .col20, .col25, .col30, .col33, .col50, .col60, .col66, .col70, .col80, .col100 {
   float: left;
+}
+
+.col15 {
+    width: 15%;    
 }
 
 .col20 {
@@ -1017,4 +1021,45 @@ input[type="text"]:hover, input[type="password"]:hover, textarea:hover {
 
 #left_menu span{
   width:100px;  
+}
+
+.thumps{
+    padding-top:30px;
+}
+.thumps a{
+    text-decoration: none;
+}
+
+.post_border{
+    padding-top:20px;
+    padding-bottom:20px;
+    border-bottom:1px solid #CCC;
+    line-height:24px;
+}
+
+#row_buttons{
+    float:right;
+    margin-right:8px;
+}
+
+.time_ago_link{
+    font-size: 1.1em;
+    font-style:italic;
+}
+
+#custom_default_privacy{
+    text-align:center;
+    margin-top:60px;
+}
+
+#privacy_label{
+   word-spacing:45px;
+}
+
+#privacy_input{
+    word-spacing:70px;
+}
+
+.edit_settings{
+    float:right;
 }

@@ -7,4 +7,6 @@ class User < ActiveRecord::Base
     has_one :users_phone
     has_one :users_profile_picture
     has_one :users_setting
+    has_many :whats_up
+    has_one :user_privacy
 end

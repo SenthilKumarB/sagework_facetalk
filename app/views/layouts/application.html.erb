@@ -8,7 +8,7 @@
 		  <%= stylesheet_link_tag "ie" %>
 	  <![endif]-->
 	  <%= stylesheet_link_tag "default", "form", "jquery-ui-1.8.16.custom" %>
-	  <%= javascript_include_tag "jquery-1.6.2.min", "jquery-ui-1.8.16.custom.min" %>
+	  <%= javascript_include_tag "jquery-1.6.2.min", "jquery-ui-1.8.16.custom.min" ,"autocomplete-rails.js" %>
 	  <script src="http://connect.facebook.net/en_US/all.js"></script>
 	  <script>
 		$(function(){
@@ -51,7 +51,7 @@
 									<li><a href="#"  class="dropdown" >Account</a></li>
 							    <li class="sublinks">
                                   <%= link_to "Edit Profile",:controller =>"users_info", :action => "index" %>
-
+                                  <%= link_to "Privacy Settings",:controller =>"users_info", :action => "privacy_settings" %>
                                 </li>
 									<li><%= link_to "Logout(#{current_user.username})", logout_url %></li>
 								<% end %>
@@ -81,7 +81,7 @@
 		        <div id="navmenu">
 	            <!-- menu -->
 			         	<ul id='ywl'>
-			         		<li><%= link_to "What's up", "#" %></li>
+			         		<li><%= link_to "What's up",:controller => "whats_up" %></li>
 			         		<li><%= link_to "Friends", :controller => "friends" %></li>
                   			<li><%= link_to "Live", :controller => "friends", :action => "broadcast" %></li>
 			         		<li><%= link_to "Photos", "#" %></li>

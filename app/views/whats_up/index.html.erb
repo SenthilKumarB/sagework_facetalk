@@ -1,0 +1,71 @@
+<div style="padding-left:20px;">
+  <%= form_tag ({:controller => "whats_up", :action => "create"}) do |f| %>
+      <div class="row">
+        <%= text_area_tag "whats_up[description]", nil, :value => @whats_up.description, :cols => "52", :rows => "4" %>
+      </div>
+
+      <div id="row_buttons">
+        <%= submit_tag "Post" %>
+      </div>
+  <% end %>
+
+  <div id="display">
+    <% unless @current_user_whats_up.blank? %>
+        <% @current_user_whats_up.each do |whats_up| %>
+           
+            <div class="post_border">
+                <div class="col15">
+                    <%= image_tag whats_up.user.users_profile_picture.photo.url(:small), :height => "64" %>
+                </div>
+
+                <div style="margin-left:85px;">
+                        <%= link_to whats_up.user.username, "#" %>
+                        <img src="/images/minimalistica/png/16x16/clock.png"/>
+                        <span class="time_ago_link"><%= timeago(whats_up.created_at) %>
+                            <img src="/images/minimalistica/png/16x16/image.png"/>via puggli<br/></span>
+                        <%= whats_up.description %><br/>
+                        <span class="thumps">
+                            <a href="#">Thumps Up-</a>
+                            <a href="#">Thumps Down-</a>
+                            <a href="#">Share-</a>
+                            <a href="#" class="post" id="<%= whats_up.id %>">Comment</a> <br/>
+                                <% unless whats_up.whats_up_comment.blank? %>
+                                <div style="border:1px solid #CCC;">
+
+                                    <% whats_up.whats_up_comment.each do |comment| %>
+                                      <%= image_tag comment.user.users_profile_picture.photo.url(:small), :height => "32" %>
+                                      <%= link_to comment.user.username, "#" %>
+                                      <%= comment.comment %><br/>
+                                    <% end %>
+                                </div>
+                              <% end %>
+                            <div id="whats_up_comment_<%= whats_up.id %>" class="whats_up_comment">
+                                <%= form_tag ({:controller => "whats_up", :action => "whats_up_comment", :id => whats_up.id}) do %>
+                                    <div class="row">
+                                        <%= text_area_tag "whats_up_comment[comment]", nil, :cols => "44", :rows => "1" %>
+                                    </div>
+                                <%= hidden_field_tag "whats_up_comment[user_id]", current_user.id %>
+                                    <div id="row_buttons">
+                                        <%= submit_tag "Post" %>
+                                    </div>
+                                <% end %>
+                            </div>
+                        </span>
+              </div>
+              <div style="float:none;clear: both;"></div>
+            </div>
+        <% end %>
+    <% end %>
+  </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".whats_up_comment").hide();
+        $('.post').click(function() {
+            var comment = "#whats_up_comment_" + this.id;
+            $(comment).toggle();
+        });
+    });
+
+</script>
