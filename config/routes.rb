@@ -8,6 +8,8 @@ Puggli::Application.routes.draw do
 
   get "user_sessions/new"
 
+   get "whats_up/index"
+
   resources :user_sessions
 
   match 'login' => "user_sessions#new",      :as => :login
@@ -15,6 +17,7 @@ Puggli::Application.routes.draw do
   match 'register' => "user#new",            :as => :register
   match 'home' => "home#index", :as => :home
   match 'auth/:provider/callback' => "user#provider_signin"
+  match 'privacy_settings' => "users_info#privacy_settings", :as => :privacy_settings
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
